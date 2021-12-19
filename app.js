@@ -32,6 +32,20 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
+// const sisillyCamp = {
+//     title: "Sico",
+//     price: 455,
+//     description: "admirable place"
+// };
+
+// const Camp2 = new Campground(sisillyCamp);
+
+// const run = async () => {
+//     await Camp2.save().then((data) => { console.log(data) });  
+// };
+
+// run().catch(err=>console.err(err));
+
 app.get("/makecampground", async (req, res) => {
     const camp = new Campground({
         title: "Garden state Massive apple saucex",
