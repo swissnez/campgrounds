@@ -8,11 +8,16 @@ const Campground = require("./models/campground.js");
 const remoteURI = process.env.REMOTE_URI + process.env.REMOTE_DB + process.env.REMOTE_DB_OPTIONS;
 const uri = 'mongodb://127.0.0.1:27017/yelp-camp';
 //process.env.REMOTE_URI+process.env.REMOTE_DB+process.env.REMOTE_DB_OPTIONS
+const cities = require("./seeds/cities.js");
+
+
 mongoose.connect(remoteURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }
 ).catch(err => console.error(err));
+
+module.exports = remoteURI;
 
 
 
@@ -46,6 +51,15 @@ app.get("/", (req, res) => {
 
 // run().catch(err=>console.err(err));
 
+
+app.get("/campgrounds", async (req, res) => { 
+    const campgrounds = await Campground.find({});
+    res.render("campgrounds/index",camgrounds);
+});
+
+
+
+
 app.get("/makecampground", async (req, res) => {
     const camp = new Campground({
         title: "Garden state Massive apple saucex",
@@ -56,9 +70,15 @@ app.get("/makecampground", async (req, res) => {
     //res.send(camp);
 });
 
+app.get("/delete", async (req, res) => {
+    await Campground.deleteMany({}).then((data) => {
+        res.json(data); 
+    }); 
+});
 
 
 
+app.get("/cities", (req, res) => res.json(cities));
 
 
 app.listen(3000, () => console.log("SERVER UP:"));
