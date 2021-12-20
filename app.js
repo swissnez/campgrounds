@@ -72,15 +72,20 @@ app.get("/makecampground", async (req, res) => {
 });
 
 app.get("/delete", async (req, res) => {
-    await Campground.deleteMany({}).then((data) => {
-        res.json(data); 
-    }); 
+    await Campground.deleteMany({}).then((data) => res.json(data)); 
 });
 
 app.get("/campgrounds/:id", async (req, res) => {
-    res.render("campgrounds/show", {}); 
+
+    const campground = await Campground.findById(req.params.id);
+    const { _id } = campground;
+    console.log(_id);
+    if(campground) res.render("campgrounds/show", {campground}); 
 });
 
+app.get("/campgrounds/new", (req, res) => {
+    res.render("campgrounds/new.ejs", {}); 
+});
 
 
 app.get("/cities", (req, res) => res.json(cities));
