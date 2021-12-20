@@ -31,7 +31,8 @@ const app = express();
 
 
 app.set("view engine", "ejs");
-app.set("views",path.join(__dirname,"views"));
+app.set("views", path.join(__dirname, "views"));
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
     res.render("home");
@@ -75,6 +76,20 @@ app.get("/delete", async (req, res) => {
     await Campground.deleteMany({}).then((data) => res.json(data)); 
 });
 
+
+app.get("/campgrounds/new", (req, res) => {
+    res.render("campgrounds/new.ejs", {}); 
+});
+
+app.post("/campgrounds", async (req, res) => {
+    const campground = new Campground(req.body.campground);
+    await campground
+        .save()
+        .then(data =>  console.log(data))
+        .catch(err => console.error(err));
+    
+});
+
 app.get("/campgrounds/:id", async (req, res) => {
 
     const campground = await Campground.findById(req.params.id);
@@ -83,9 +98,7 @@ app.get("/campgrounds/:id", async (req, res) => {
     if(campground) res.render("campgrounds/show", {campground}); 
 });
 
-app.get("/campgrounds/new", (req, res) => {
-    res.render("campgrounds/new.ejs", {}); 
-});
+
 
 
 app.get("/cities", (req, res) => res.json(cities));

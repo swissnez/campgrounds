@@ -8,8 +8,18 @@
     <title>New Campground</title>
 </head>
 <body>
-    <form action="/campgrounds" method="POST">
-    
-    </form>
+    <div class="container">
+        <form action="/campgrounds" method="POST">
+            <div>
+                <label for="">Title</label>
+                <input type="text" id="title" name="campground[title]">
+            </div>
+            <div>
+                    <label for="">Location</label>
+                    <input type="text" id="Location" name="campground[location]">
+                </div>
+                <button>Add Campground</button>
+        </form>
+    </div>
 </body>
 </html>
