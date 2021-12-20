@@ -54,7 +54,8 @@ app.get("/", (req, res) => {
 
 app.get("/campgrounds", async (req, res) => { 
     const campgrounds = await Campground.find({});
-    res.render("campgrounds/index",camgrounds);
+    //res.json(campgrounds);
+    res.render("campgrounds/index.ejs", {campgrounds});
 });
 
 
@@ -74,6 +75,10 @@ app.get("/delete", async (req, res) => {
     await Campground.deleteMany({}).then((data) => {
         res.json(data); 
     }); 
+});
+
+app.get("/campgrounds/:id", async (req, res) => {
+    res.render("campgrounds/show", {}); 
 });
 
 
