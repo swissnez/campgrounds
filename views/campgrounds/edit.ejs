@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+    <title>Edit Campground</title>
+</head>
+<body>
+    <h3>Edit a Campground</h3>
+    <div class="container">
+        <form action="/campgrounds<%= campground._id %>/edit" method="POST">
+            <div>
+                <label for="">Title</label>
+                <input type="text" id="title" name="campground[title]" placeholder="<%= campground.title %>" value="<%= campground.title %>">
+            </div>
+            <div>
+                    <label for="">Location</label>
+                    <input type="text" id="Location" name="campground[location]" placeholder="<%= campground.location %>" value="<%= campground.location %>">
+                </div>
+                <button>Update Campground</button>
+        </form>
+        <a href="/campgrounds">All Campgrounds</a>
+    </div>
+</body>
+</html>

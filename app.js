@@ -94,7 +94,13 @@ app.get("/campgrounds/:id", async (req, res) => {
 
     const campground = await Campground.findById(req.params.id);
     const { _id } = campground;
+
     if(campground) res.render("campgrounds/show", {campground}); 
+});
+
+app.get("/campgrounds/:id/edit", async (req, res) => {
+    const campground = await Campground.findById(req.params.id);
+    if(campground) res.render("campgrounds/edit", {campground}); 
 });
 
 
