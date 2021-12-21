@@ -13,6 +13,27 @@
         <blockquote>
             <p><em>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, natus quaerat quos corporis repudiandae quasi sit veritatis, tempore reprehenderit quibusdam, harum magni placeat voluptates sequi reiciendis autem earum consectetur iure!</em></p>
           </blockquote>
+
+
+          <table>
+                <thead>
+                  <tr>
+                    <th><h5>Location</h5></th>
+                    <th><h5>Title</h5></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><%= campground.location %></td>
+                    <td><%= campground.title %></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>
+                  <form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="post">
+                <button>DELETE</button>
+                </form>
+              </p>
 </body>
 <footer>
     <a href="/campgrounds/<%= campground._id %>/edit">Edit</a>
