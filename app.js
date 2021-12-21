@@ -7,7 +7,6 @@ const mongoose = require("mongoose");
 const Campground = require("./models/campground.js");
 const methodOverride = require("method-override");
 const remoteURI = process.env.REMOTE_URI + process.env.REMOTE_DB + process.env.REMOTE_DB_OPTIONS;
-const uri = 'mongodb://127.0.0.1:27017/yelp-camp';
 //process.env.REMOTE_URI+process.env.REMOTE_DB+process.env.REMOTE_DB_OPTIONS
 const cities = require("./seeds/cities.js");
 
