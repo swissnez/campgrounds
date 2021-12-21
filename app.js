@@ -5,6 +5,7 @@ require('dotenv').config();
 const path = require("path");
 const mongoose = require("mongoose");
 const Campground = require("./models/campground.js");
+const methodOverride = require("method-override");
 const remoteURI = process.env.REMOTE_URI + process.env.REMOTE_DB + process.env.REMOTE_DB_OPTIONS;
 const uri = 'mongodb://127.0.0.1:27017/yelp-camp';
 //process.env.REMOTE_URI+process.env.REMOTE_DB+process.env.REMOTE_DB_OPTIONS
@@ -32,7 +33,7 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
-
+app.use(methodOverride("_method"));
 app.get("/", (req, res) => res.render("home"));
 
 // const sisillyCamp = {
@@ -103,5 +104,8 @@ app.get("/campgrounds/:id/edit", async (req, res) => {
     if(campground) res.render("campgrounds/edit", {campground}); 
 });
 
+app.put("/campgrounds/:id", async (req, res) => {
+    res.send("POST PUT worked"); 
+});
 
 app.listen(3000, () => console.log("SERVER UP:"));
