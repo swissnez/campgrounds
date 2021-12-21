@@ -29,14 +29,11 @@ db.once("open", () => {console.log("DB CONNECTED");});
 
 const app = express();
 
-
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-    res.render("home");
-});
+app.get("/", (req, res) => res.render("home"));
 
 // const sisillyCamp = {
 //     title: "Sico",
@@ -88,20 +85,17 @@ app.post("/campgrounds", async (req, res) => {
         .then(data =>  console.log(data))
         .catch(err => console.error(err));
     
+    
+    res.redirect(`/campgrounds/${campground._id}`);
+    
 });
 
 app.get("/campgrounds/:id", async (req, res) => {
 
     const campground = await Campground.findById(req.params.id);
     const { _id } = campground;
-    console.log(_id);
     if(campground) res.render("campgrounds/show", {campground}); 
 });
-
-
-
-
-app.get("/cities", (req, res) => res.json(cities));
 
 
 app.listen(3000, () => console.log("SERVER UP:"));

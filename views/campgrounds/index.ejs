@@ -14,7 +14,16 @@
 
     <ul>
         <% for( let campground of campgrounds ) { %>
-            <li><a href="/campgrounds/<%= campground._id %>"><%= campground.title %></a></li>
+            <article class="card">
+                    <header>
+                      <h3><%= campground.title %></h3>
+                    </header>
+                    <footer>
+                      <button>Like</button>
+                      <li><a href="/campgrounds/<%= campground._id %>"><%= campground.title %></a></li>
+                    </footer>
+                  </article>
+
         <% } %>
     </ul>
 
